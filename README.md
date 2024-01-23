@@ -1,2 +1,6 @@
 # ESEP-Group-2
-For the use of Group 2 to work on our semester project
+Group Memebers and Roles:
+Sarah Mottram - X
+Aayushi Mathur - X
+Ralph Molu - X
+Teme Woldesenbet - X
