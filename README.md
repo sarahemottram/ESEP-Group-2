@@ -4,4 +4,4 @@ Sarah Mottram - X <br>
 Aayushi Mathur - X <br>
 Ralph Molu - X <br>
 Teme Woldesenbet - X <br>
-https://dev.azure.com/ESEPG2/ESEP%20Group%202%20Semester%20Project
+Link to AzureDevops w/backlog: https://dev.azure.com/ESEPG2/ESEP%20Group%202%20Semester%20Project
