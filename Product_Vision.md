@@ -1,3 +1,4 @@
+//This is a template, but we might just need to do near and far vision
 ## Statement
   Facebook doesn't allow users to purchase "likes",
   our social network will have this.
