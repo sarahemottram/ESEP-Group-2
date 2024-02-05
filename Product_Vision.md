@@ -1,35 +1,43 @@
-# Gilded Rose Far Vision
+# Pac-Man Remake Far Vision
 
 ## Overview
 
-In the distant future, we envision Gilded Rose becoming the epitome of hospitality and trade in our city. Our small inn will transform into a bustling hub, renowned not only for its prime location and friendly innkeeper Allison but also for pioneering a revolutionary approach to goods and services. 
+In the distant future, our remade Pac-Man game will stand as a timeless tribute to the iconic arcade classic, providing players with an immersive and nostalgic experience. We envision a game that not only captures the essence of the original but elevates it with modern graphics, sound, and gameplay mechanics.
 
-## Mission
+## Maze Layout
 
-Through continuous innovation, we aim to redefine the standards of quality and customer satisfaction in the industry. Our commitment extends beyond mere transactions; we aspire to create a community where patrons not only enjoy the finest goods but also partake in memorable experiences. Gilded Rose will stand as a beacon of warmth and excellence, setting the benchmark for other establishments to follow.
+Our far vision includes a comprehensive recreation of the original maze layout, faithfully replicating the walls and pathways that players fondly remember. The ghosts will not only move intelligently but possess 3D models reminiscent of the classic characters, enhancing the nostalgic journey for players.
 
-## Evolution
+## Strategic Gameplay
 
-As we expand our offerings, our system will evolve to seamlessly integrate new categories of items. Each addition will bring a unique charm to our inventory, ensuring that our customers always find something special at Gilded Rose. The underlying technology will continue to support our mission, effortlessly managing inventory while adapting to the ever-changing landscape of goods and services.
+To add depth to the gameplay, we plan to introduce strategic elements such as power dots, collectable dots, and multiple levels. Players will feel a sense of accomplishment as they progress through each level, collecting dots and strategically using power dots to turn the tide against the ghosts.
 
-## Branding
+## Immersive Experience
 
-In this far-reaching vision, Gilded Rose is not just an inn but a lifestyle brand, synonymous with luxury, reliability, and a commitment to timeless quality. We foresee a network of Gilded Rose establishments across the realm, all sharing the same dedication to excellence and customer delight.
+The immersive experience will extend to visuals and sounds, with a 3D representation of Pac-Man, iconic sound effects, and a rendition of the original music that transports players back to the Pac-Man world. We aspire to create a game where every aspect, from visuals to gameplay mechanics, pays homage to the original while offering a fresh and captivating experience.
 
-# Gilded Rose Near Vision
+# Pac-Man Remake Near Vision
 
 ## Overview
 
-In the near term, Gilded Rose aims to solidify its position as the go-to destination for premium goods in our city. We are dedicated to enhancing the customer experience by refining our inventory management system to accommodate the introduction of a new category of items – the 'Conjured' items.
+In the near term, our focus is on developing the core elements outlined in the user stories to create a playable prototype that embodies the spirit of the classic Pac-Man game. We will meticulously design the maze with walls that mirror the original, ensuring a familiar yet engaging challenge for players.
 
-## System Update
+## Ghost Behavior
 
-Our near vision involves seamlessly integrating Conjured items into our inventory, ensuring they adhere to our commitment to quality and customer satisfaction. The system update will account for the unique characteristics of Conjured items, degrading their quality at an accelerated rate while maintaining the integrity of our overall inventory management process.
+The ghosts will be programmed to move intelligently, and 3D models will be created to faithfully represent the iconic characters. A power dot system will be implemented to give players a means of combating the ghosts, fostering a sense of empowerment within the game.
 
-## Promotions and Events
+## Gameplay Elements
 
-With a keen focus on customer engagement, we plan to roll out targeted promotions and events, leveraging the strengths of our existing categories, such as 'Aged Brie' and 'Backstage Passes.' These initiatives will not only drive sales but also create a buzz around Gilded Rose as a dynamic and customer-centric establishment.
+Collectable dots will be strategically placed, with a clear visual indicator of the player's progress in collecting them. The introduction of multiple levels will provide players with a goal to achieve, creating a sense of accomplishment upon completing each stage.
 
-## Internal Culture
+## Player Controls and Progression
 
-Internally, we will invest in the continuous improvement of our team, fostering a culture of innovation and collaboration. This near vision positions Gilded Rose as a forward-thinking and adaptable establishment, ready to embrace new opportunities and cater to the evolving preferences of our discerning clientele.
+Basic player controls using arrow keys for movement will be implemented, accompanied by realistic collision behaviors with walls, collectables, and enemies. Visual representations of remaining lives and collected dots will be displayed, ensuring players are well-informed about their progress and risks.
+
+## Reset Mechanism
+
+Game progression will involve a reset mechanism after losing a life, allowing players to continue from the beginning of a level while retaining collected dots. A full game reset will occur upon exhausting all lives, providing a challenging yet rewarding experience for players.
+
+## Sound Effects and Nostalgia
+
+Sound effects, including the iconic ghost siren, "waka-waka," and original game music, will be integrated to enhance the nostalgic feel. Our near vision is centered on delivering a functional prototype that captures the essence of the classic Pac-Man experience while laying the foundation for further refinement and expansion.
