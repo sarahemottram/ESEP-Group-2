@@ -1,28 +1,35 @@
-//This is a template, but we might just need to do near and far vision
-## Statement
-  Facebook doesn't allow users to purchase "likes",
-  our social network will have this.
+# Gilded Rose Far Vision
 
-## Stakeholders and Needs
-  Sponsor: to raise investments.
-  Developer: to earn money by programming.
-  Users: to share photos and purchase popularity.
-  Bank: to make commission on every purchase.
-  Government: to protect society against abusive content.
-  Competitors: to wipe us off the market.
+## Overview
 
-## Actors and Features
-  User can create account, upload photos, share photos,
-    send personal messages, like other photos, purchase likes.
-  Admin can ban user accounts, view summary reports, authorize
-    credit card transactions, configure system parameters,
-    monitor server resource usage.
-  Bank can process credit card transactions.
+In the distant future, we envision Gilded Rose becoming the epitome of hospitality and trade in our city. Our small inn will transform into a bustling hub, renowned not only for its prime location and friendly innkeeper Allison but also for pioneering a revolutionary approach to goods and services. 
 
-## Quality Requirements
-  Any page must open in less than 300ms.
-  User interface must be attractive and simple.
-  Availability must be over 99.999%.
-  Test coverage must be over 80%.
-  Development pipeline must be fully automated.
-  Interfaces must include web site and iOS/Android app.
+## Mission
+
+Through continuous innovation, we aim to redefine the standards of quality and customer satisfaction in the industry. Our commitment extends beyond mere transactions; we aspire to create a community where patrons not only enjoy the finest goods but also partake in memorable experiences. Gilded Rose will stand as a beacon of warmth and excellence, setting the benchmark for other establishments to follow.
+
+## Evolution
+
+As we expand our offerings, our system will evolve to seamlessly integrate new categories of items. Each addition will bring a unique charm to our inventory, ensuring that our customers always find something special at Gilded Rose. The underlying technology will continue to support our mission, effortlessly managing inventory while adapting to the ever-changing landscape of goods and services.
+
+## Branding
+
+In this far-reaching vision, Gilded Rose is not just an inn but a lifestyle brand, synonymous with luxury, reliability, and a commitment to timeless quality. We foresee a network of Gilded Rose establishments across the realm, all sharing the same dedication to excellence and customer delight.
+
+# Gilded Rose Near Vision
+
+## Overview
+
+In the near term, Gilded Rose aims to solidify its position as the go-to destination for premium goods in our city. We are dedicated to enhancing the customer experience by refining our inventory management system to accommodate the introduction of a new category of items – the 'Conjured' items.
+
+## System Update
+
+Our near vision involves seamlessly integrating Conjured items into our inventory, ensuring they adhere to our commitment to quality and customer satisfaction. The system update will account for the unique characteristics of Conjured items, degrading their quality at an accelerated rate while maintaining the integrity of our overall inventory management process.
+
+## Promotions and Events
+
+With a keen focus on customer engagement, we plan to roll out targeted promotions and events, leveraging the strengths of our existing categories, such as 'Aged Brie' and 'Backstage Passes.' These initiatives will not only drive sales but also create a buzz around Gilded Rose as a dynamic and customer-centric establishment.
+
+## Internal Culture
+
+Internally, we will invest in the continuous improvement of our team, fostering a culture of innovation and collaboration. This near vision positions Gilded Rose as a forward-thinking and adaptable establishment, ready to embrace new opportunities and cater to the evolving preferences of our discerning clientele.
