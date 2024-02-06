@@ -1,6 +1,7 @@
 # Backlog
 https://dev.azure.com/ESEPG2/ESEP%20Group%202%20Semester%20Project/_backlogs/backlog/ESEP%20Group%202%20Semester%20Project%20Team/Stories  
 Each item in the backlog is a User Story (elaborated in the description) containing the Definition of Ready (in the acceptance criteria) and Story Points (under planning).  
+Story Points are numbered as expected effort on a scale of 1-easy 2-medium 3-hard.  
 
 # Backlog Order Rationale
 We've ordered our backlog based on 3 main ideas:  
