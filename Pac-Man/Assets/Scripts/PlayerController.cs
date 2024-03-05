@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    private PlayerLocomotion locomotion;
+
     [SerializeField]
     float speed;
 
@@ -22,13 +24,14 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        locomotion = GetComponent<PlayerLocomotion>();
         modelTransform = transform.Find("Pac-Model");
     }
 
     private void Update()
     {
         CameraRelativeMovement();
-    }  
+    }
 
     private void CameraRelativeMovement()
     {
@@ -43,35 +46,11 @@ public class PlayerController : MonoBehaviour
         forward.y = 0f; //Vector is horizontal
         right.y = 0f; //Vector is horizontal
 
-        // Relative movement
-        Vector3 moveDirection = (forward * vertical + right * horizontal).normalized;
-
-        // Only rotate the player if moving left or right
-        if (horizontal != 0f) //left or right
-        {
-            Quaternion newRotation = Quaternion.LookRotation(moveDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, cameraRotationSpeed * Time.deltaTime);
-        }
-
-        //Pac-Man faces direction of travel
-        Quaternion targetRotation;
-
-        if (moveDirection != Vector3.zero) // Moving Forwards
-        {
-            targetRotation = Quaternion.LookRotation(moveDirection);
-        }
-        else if (vertical < 0f) // Moving backward
-        {
-            targetRotation = Quaternion.LookRotation(-forward);
-        }
-        else // No movement
-        {
-            targetRotation = modelTransform.rotation;
-        }
+        locomotion.GetMovement(modelTransform.rotation, cameraRotationSpeed, horizontal, vertical, forward, right, out Vector3 moveDirection, out Quaternion targetRotation);
 
         modelTransform.rotation = Quaternion.Slerp(modelTransform.rotation, targetRotation, modelRotationSpeed * Time.deltaTime);
 
         // Move the player
-        characterController.Move(moveDirection * Time.deltaTime * speed);
+        characterController.Move(speed * Time.deltaTime * moveDirection);
     }
 }

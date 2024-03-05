@@ -14,9 +14,11 @@ GameObject:
   - component: {fileID: 5163113163951884492}
   - component: {fileID: 6521702137374994308}
   - component: {fileID: 2521131412129210258}
+  - component: {fileID: 1458884706397953185}
+  - component: {fileID: 5428534151346832479}
   m_Layer: 0
   m_Name: Pac-Man
-  m_TagString: Untagged
+  m_TagString: Pac-Man
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +104,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -149,6 +151,31 @@ MonoBehaviour:
   speed: 5
   cameraRotationSpeed: 1
   modelRotationSpeed: 15
+--- !u!114 &1458884706397953185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199195053360138107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf92a5f812053c4b95b5af14117e0c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5428534151346832479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199195053360138107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9684bbd60d53844ca4a93aa1cb80ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
 --- !u!1001 &7355286728246302977
 PrefabInstance:
   m_ObjectHideFlags: 0
