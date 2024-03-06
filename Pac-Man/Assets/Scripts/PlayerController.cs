@@ -1,56 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+namespace PacMan
 {
-    private PlayerLocomotion locomotion;
-
-    [SerializeField]
-    float speed;
-
-    [SerializeField]
-    float cameraRotationSpeed;
-
-    [SerializeField]
-    float modelRotationSpeed;
-
-    private CharacterController characterController;
-    private Transform modelTransform;
-
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerController : MonoBehaviour
     {
-        characterController = GetComponent<CharacterController>();
-        locomotion = GetComponent<PlayerLocomotion>();
-        modelTransform = transform.Find("Pac-Model");
-    }
+        private PlayerLocomotion locomotion;
+        [SerializeField]
+        float speed;
 
-    private void Update()
-    {
-        CameraRelativeMovement();
-    }
+        [SerializeField]
+        float cameraRotationSpeed;
 
-    private void CameraRelativeMovement()
-    {
-        // Inputs
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        [SerializeField]
+        float modelRotationSpeed;
 
-        // Camera direction
-        Vector3 forward = Camera.main.transform.forward;
-        Vector3 right = Camera.main.transform.right;
+        private CharacterController characterController;
+        private Transform modelTransform;
 
-        forward.y = 0f; //Vector is horizontal
-        right.y = 0f; //Vector is horizontal
+        // Start is called before the first frame update
+        void Start()
+        {
+            characterController = GetComponent<CharacterController>();
+            locomotion = GetComponent<PlayerLocomotion>();
+            modelTransform = transform.Find("Pac-Model");
+        }
 
-        locomotion.GetMovement(modelTransform.rotation, cameraRotationSpeed, horizontal, vertical, forward, right, out Vector3 moveDirection, out Quaternion targetRotation);
+        private void Update()
+        {
+            CameraRelativeMovement();
+        }
 
-        modelTransform.rotation = Quaternion.Slerp(modelTransform.rotation, targetRotation, modelRotationSpeed * Time.deltaTime);
+        private void CameraRelativeMovement()
+        {
+            // Inputs
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
 
-        // Move the player
-        characterController.Move(speed * Time.deltaTime * moveDirection);
+            // Camera direction
+            Vector3 forward = Camera.main.transform.forward;
+            Vector3 right = Camera.main.transform.right;
+
+            forward.y = 0f; //Vector is horizontal
+            right.y = 0f; //Vector is horizontal
+
+            locomotion.GetMovement(modelTransform.rotation, cameraRotationSpeed, horizontal, vertical, forward, right, out Vector3 moveDirection, out Quaternion targetRotation);
+
+            modelTransform.rotation = Quaternion.Slerp(modelTransform.rotation, targetRotation, modelRotationSpeed * Time.deltaTime);
+
+            // Move the player
+            characterController.Move(speed * Time.deltaTime * moveDirection);
+        }
     }
 }
