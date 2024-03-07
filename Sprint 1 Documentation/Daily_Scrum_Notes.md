@@ -10,7 +10,7 @@
   * Mob programming for next user story: collectible dots. 
 * Sarah  
   * Mob programming for next user story: collectible dots. 
-*Ralph
+* Ralph
   * Mob programming for next user story: collectible dots.
 ## Impediments faced: 
 * User story: ghosts switch mode to chase mode will have to be pushed to a later sprint. 
