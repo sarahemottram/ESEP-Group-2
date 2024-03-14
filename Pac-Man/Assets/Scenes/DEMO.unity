@@ -386,7 +386,15 @@ PrefabInstance:
       value: Pac-Man
       objectReference: {fileID: 0}
     - target: {fileID: 5163113163951884492, guid: 4c0fd258e5c342249b3638c9227d9a51, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163113163951884492, guid: 4c0fd258e5c342249b3638c9227d9a51, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6521702137374994308, guid: 4c0fd258e5c342249b3638c9227d9a51, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1896,33 +1904,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1587065936777053144, guid: 041872b46e1fe3548ae650d575682baf, type: 3}
+      propertyPath: CameraDistance
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1587065936777053144, guid: 041872b46e1fe3548ae650d575682baf, type: 3}
+      propertyPath: VerticalArmLength
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1621915553223145108, guid: 041872b46e1fe3548ae650d575682baf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.14639884
+      value: -0.14962085
       objectReference: {fileID: 0}
     - target: {fileID: 1621915553223145108, guid: 041872b46e1fe3548ae650d575682baf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.95
+      value: 3.11
       objectReference: {fileID: 0}
     - target: {fileID: 1621915553223145108, guid: 041872b46e1fe3548ae650d575682baf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.45924807
+      value: 1.9592447
       objectReference: {fileID: 0}
     - target: {fileID: 1621915553223145108, guid: 041872b46e1fe3548ae650d575682baf, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.014922015
+      value: 0.011627725
       objectReference: {fileID: 0}
     - target: {fileID: 1621915553223145108, guid: 041872b46e1fe3548ae650d575682baf, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.002105178
+      value: 0.0022388133
       objectReference: {fileID: 0}
     - target: {fileID: 1621915553223145108, guid: 041872b46e1fe3548ae650d575682baf, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.99008214
+      value: 0.98189515
       objectReference: {fileID: 0}
     - target: {fileID: 1621915553223145108, guid: 041872b46e1fe3548ae650d575682baf, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.13967948
+      value: -0.18905503
       objectReference: {fileID: 0}
     - target: {fileID: 1621915553223145108, guid: 041872b46e1fe3548ae650d575682baf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1976,6 +1992,10 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 231649800}
+    - target: {fileID: 6174634413695429932, guid: 041872b46e1fe3548ae650d575682baf, type: 3}
+      propertyPath: m_Lens.Dutch
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

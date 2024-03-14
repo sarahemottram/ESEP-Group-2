@@ -9,17 +9,19 @@ namespace PacMan
     {
         public bool isScattered;
 
+        FailState failState;
+
         // Start is called before the first frame update
         void Start()
         {
+            failState = new FailState();
             Chase();
         }
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Pac-Man") && !isScattered)
             {
-                //this is place holder, this should call the fail state (or loss state if no lives left)
-                Destroy(other.gameObject);
+                failState.Die();
             }
             else if (other.gameObject.CompareTag("Pac-Man") && isScattered)
             {
