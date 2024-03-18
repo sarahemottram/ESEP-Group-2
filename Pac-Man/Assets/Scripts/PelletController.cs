@@ -6,7 +6,7 @@ namespace PacMan
 {
     public class PelletController : MonoBehaviour
     {
-        public int score = 0;
+        public int score;
 
         public GameObject inky;
         public GameObject blinky;
@@ -20,6 +20,7 @@ namespace PacMan
 
         public void InitializeGhosts()
         {
+            score = 0;
             inky = GameObject.FindGameObjectWithTag("Inky");
             blinky = GameObject.FindGameObjectWithTag("Blinky");
             pinky = GameObject.FindGameObjectWithTag("Pinky");

@@ -1,29 +1,70 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace PacMan
 {
     public class FailState : MonoBehaviour
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Pac-Man");
+        GameObject player;
+        GameObject virtualCamera;
+        PlayerController playerController;
+        private bool dead;
+        private float deadTimer = 0;
+        private float pauseTime = 3;
 
+        public void Start()
+        {
+            player = GameObject.FindGameObjectWithTag("Pac-Man");
+            virtualCamera = GameObject.Find("Virtual Camera");
+            playerController = player.GetComponent<PlayerController>();
+        }
+
+        public void Update() 
+        {
+            if (dead && player.GetComponent<PlayerLife>().lives > 0)
+            {
+                deadTimer += Time.deltaTime;
+                if (deadTimer >= pauseTime)
+                {
+                    dead = false;
+                    SoftReset();
+                }
+            }
+            else if (dead && player.GetComponent<PlayerLife>().lives <= 0)
+            {
+                deadTimer += Time.deltaTime;
+                if (deadTimer >= pauseTime)
+                    GameOver();
+            }
+        }
         public void Die()
         {
-            var lives = player.GetComponent<PlayerLife>().lives;
-            if (lives > 0)
-            {
-                var modelTransform = player.transform.Find("Pac-Model");
-                var x = -90;
+            var modelTransform = player.transform.Find("Pac-Model");
+            var x = -90;
 
-                player.gameObject.GetComponent<PlayerController>().enabled = false; //remove player controll
-                modelTransform.rotation = Quaternion.Euler(x, 0, 0); //flips pac-man on his back
-                player.GetComponent<PlayerLife>().lives--; //removes life
+            playerController.enabled = false; //remove player control
+            virtualCamera.SetActive(false); //turns off virtual camera (to fix a bug)
+            modelTransform.rotation = Quaternion.Euler(x, 0, 0); //flips pac-man on his back
 
-                //todo: reset level keeping collected dots and score
-                //todo: play sound effect and wait for sound effect
-            }
-            //todo: reset full level
+            dead = true; //this triggers the update loop to pause and reset
+        }
+
+        private void SoftReset()
+        {
+            //todo play sound effect
+            playerController.ResetPosition(); //resets player to beginning position
+            player.GetComponent<PlayerLife>().lives--; //removes life
+            playerController.enabled = true; //gives player controll back
+            deadTimer = 0;
+            virtualCamera.gameObject.SetActive(true); //turns back on virtual camera
+        }
+
+            private void GameOver()
+        {
+            SceneManager.LoadScene("Game Over");
         }
     }
 }

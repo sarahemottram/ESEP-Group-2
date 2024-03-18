@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5421463427078754240}
   - component: {fileID: 4563582855160357943}
   - component: {fileID: 7604190442756074340}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Inky
   m_TagString: Inky
   m_Icon: {fileID: 0}
@@ -34,6 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4806104276080712863}
+  - {fileID: 2682673805556735115}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3700031912051809886
@@ -119,6 +120,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab4b37f7344a8b4e88e273481980330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isScattered: 0
+--- !u!1001 &2499635101731208032
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4115621604316457317}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_Name
+      value: Scatter
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+--- !u!4 &2682673805556735115 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 52facc2f78547f14398de423eab0cfef, type: 3}
+  m_PrefabInstance: {fileID: 2499635101731208032}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4987753206420061044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 80f8b977cfc6f8341b1d3fc5ce5ddcbf, type: 3}
       propertyPath: m_Name
-      value: Inky Model
+      value: Chase
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

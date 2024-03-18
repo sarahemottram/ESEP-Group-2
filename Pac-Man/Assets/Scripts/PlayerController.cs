@@ -20,12 +20,15 @@ namespace PacMan
         private CharacterController characterController;
         private Transform modelTransform;
 
+        public Vector3 startLocation;
+
         // Start is called before the first frame update
         void Start()
         {
             characterController = GetComponent<CharacterController>();
             locomotion = GetComponent<PlayerLocomotion>();
             modelTransform = transform.Find("Pac-Model");
+            startLocation = transform.position;
         }
 
         private void Update()
@@ -52,6 +55,11 @@ namespace PacMan
 
             // Move the player
             characterController.Move(speed * Time.deltaTime * moveDirection);
+        }
+        
+        public void ResetPosition()
+        {
+            transform.position = startLocation;
         }
     }
 }

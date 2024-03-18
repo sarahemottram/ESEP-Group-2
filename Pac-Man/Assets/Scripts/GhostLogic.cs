@@ -14,7 +14,7 @@ namespace PacMan
         // Start is called before the first frame update
         void Start()
         {
-            failState = new FailState();
+            failState = this.gameObject.AddComponent<FailState>();
             Chase();
         }
         private void OnTriggerEnter(Collider other)
@@ -32,21 +32,23 @@ namespace PacMan
         void Chase ()
         {
             isScattered = false;
-            Debug.Log("Ghosts in chase!");
-            //set model to normal
+            //set model to chase
+            this.transform.Find("Chase").gameObject.SetActive(true);
+            this.transform.Find("Scatter").gameObject.SetActive(false);
+
             //ghost movement behaivor to chase pac man
-            //pacman dies on touch
         }
         public void Scatter()
         {
             isScattered = true;
             Debug.Log("Ghosts in scatter!");
             //change model to scatter
-            //ghost movement behaviero to run from pac man
-            //pac man kills ghosts on touch
+            this.transform.Find("Scatter").gameObject.SetActive(true);
+            this.transform.Find("Chase").gameObject.SetActive(false);
 
-            //Go back to chase mode after 7 seconds
-            Invoke(nameof(Chase), 7f);
+            //ghost movement behaviero to run from pac man
+
+            Invoke(nameof(Chase), 7f); //Go back to chase mode after 7 seconds
         }
     }
 }
