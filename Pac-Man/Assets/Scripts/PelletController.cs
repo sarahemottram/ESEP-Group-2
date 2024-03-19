@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace PacMan
 {
     public class PelletController : MonoBehaviour
     {
         public int score;
+        [SerializeField]
+        Text scoreCount;
 
         public GameObject inky;
         public GameObject blinky;
@@ -16,6 +19,11 @@ namespace PacMan
         private void Start()
         {
             InitializeGhosts();
+        }
+
+        private void Update()
+        {
+            scoreCount.text = score.ToString();
         }
 
         public void InitializeGhosts()
