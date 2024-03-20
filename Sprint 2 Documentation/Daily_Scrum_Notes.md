@@ -1,19 +1,22 @@
-# THIS IS COPY PAST OF SPRINT 1 WE GOTTA CHANGE IT
 ## Past 24 hours activities:  
 * Ayushi
-  * Tracking the activities vs time stamps in the form of a burndown chart. 
+  * Yesterday's Weather Forcast 
 * Sarah
-  * Started implementation of user stories: camera and movement. 
+  * Level layout, win conditions, loss conditions
 * Ralph
-  * Created a Kanban Board to enhance visibility over the current sprint backlog activities.
+  * Sprint Burndown Chart
+* Teme
+  * Working on implementing GameCI
 ## Next 24 hours activities: 
 * Aayushi
-  * Mob programming for next user story: collectible dots. 
+  * Mob programming for UI and Testing
 * Sarah  
-  * Mob programming for next user story: collectible dots. 
+  * Mob programming for UI and Testing
 * Ralph
-  * Mob programming for next user story: collectible dots.
+  * Mob programming for UI and Testing
+* Teme
+  * Working on implementing GameCI
 ## Impediments faced: 
-* User story: ghosts switch mode to chase mode will have to be pushed to a later sprint. 
 * Team members’ availability. 
-* Team members’ coding language proficiency.  
+* Team members showing up to meetings.
+* GameCI and GitHub actions are new and difficult to work with
