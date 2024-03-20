@@ -1,30 +1,30 @@
-Yesterday's Weather Forecasting Pattern
+## Yesterday's Weather Forecasting Pattern
 
 We have used this tool to analyze the team's progress by generating
 yesterday\'s weather of Sprint 1 and used the data to forecast Sprint 2
 capacity.
 
-## Calculation Explanation:
+# Calculation Explanation:
   -----------------------------------------------------------------------
-  ##Theoretical capacity##:            If all members of the team are
+  Theoretical capacity:            If all members of the team are
                                       available as planned (0 = not
                                       available, 1 = fully available)
   ----------------------------------- -----------------------------------
-  **Actual Capacity**:               It's the sum of Actual Availability
+  Actual Capacity:              It's the sum of Actual Availability
                                       of each team member
 -----------------------------------------------------------------------
-  **Team Capacity**:                   The percentage of Actual Capacity
+  Team Capacity:                   The percentage of Actual Capacity
 -----------------------------------------------------------------------
-  **Assumed Normalized Velocity**:    Normalized velocity is calculated
+  Assumed Normalized Velocity:    Normalized velocity is calculated
                                       as the number of points completed
                                       in a Sprint, divided by the percent
                                       team capacity in that Sprint
 -----------------------------------------------------------------------
-  **Sprint Buffer**:                   The percentage of velocity to be
+  Sprint Buffer:                   The percentage of velocity to be
                                       reserved for unplanned stories that
                                       come up during the sprint
 -----------------------------------------------------------------------
-  **Targeted points**:                 The team\'s \"percent capacity\"
+  Targeted points:                 The team\'s \"percent capacity\"
                                       for the upcoming Sprint is
                                       displayed and the number of points
                                       (excluding buffer) that the team
