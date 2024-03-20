@@ -1,3 +1,4 @@
+# THIS IS COPY PAST OF SPRINT 1 WE GOTTA CHANGE IT
 ## Past 24 hours activities:  
 * Ayushi
   * Tracking the activities vs time stamps in the form of a burndown chart. 
