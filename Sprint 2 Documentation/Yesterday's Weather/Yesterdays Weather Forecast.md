@@ -4,9 +4,9 @@ We have used this tool to analyze the team's progress by generating
 yesterday\'s weather of Sprint 1 and used the data to forecast Sprint 2
 capacity.
 
-1.  **Calculation Explanation:\
+## Calculation Explanation:
   -----------------------------------------------------------------------
-  **Theoretical capacity**:            If all members of the team are
+  ##Theoretical capacity##:            If all members of the team are
                                       available as planned (0 = not
                                       available, 1 = fully available)
   ----------------------------------- -----------------------------------
@@ -44,9 +44,7 @@ Table.2. Showing the rationale for upcoming Sprint**
 **Targeted points is the Forecast of the number of Story Points
 deliverable in Sprint 2 based on Yesterday's Weather Forecast.**
 
-2.  **Steps for using this Tool:\
-    **
-
+2.  ## Steps for using this Tool:
 -   Enter the names of each team member in \"Column B."
 
 -   Enter the fraction of each working day that each team member should
