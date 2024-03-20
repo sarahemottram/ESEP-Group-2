@@ -1,6 +1,6 @@
-#THIS IS COPY PASTE FROM SPRINT 1, WE NEED TO EDIT IT  
 # Sprint 2 Review  
-## What we completed in Sprint 1
+## What we completed in Sprint 2
+CHANGE ALL THIS LATER TO WHAT WE DID
 * Created and implemented 3D models for Pac-Man and the Ghosts
 * Created wall object with a texture similar to the original game
 * Attatched camera to player (it follows the player around)
@@ -14,6 +14,7 @@
 * Mob programming went very well
 * Sprint planning and completing on schedule
   * Product backlog refinement
+  * Time Management
 * "Daily" sprint standups were asynchronous 
 
 ## What do we want to continue to do moving forward?  
@@ -24,10 +25,9 @@
 ## What didn't go well?
 * Communication
 * Availability
-* Time management
-  * While we did get everything done, we didn't start until towards the end of the sprint (shown in our burndown chart)
+* GameCI impementation
 
 ## What do we need to change?
-* Regular check-ins and updates
-* Finding a regular meeting time
-* Start working earlier
+* Everyone needs to be communicating in the Teams chat
+* Everyone needs to show up to agreed upon meeting times
+* Being more proactive to take initiative on tasks
