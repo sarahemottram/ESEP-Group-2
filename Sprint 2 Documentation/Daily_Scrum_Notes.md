@@ -19,4 +19,4 @@
 ## Impediments faced: 
 * Team members’ availability. 
 * Team members showing up to meetings.
-* GameCI and GitHub actions are new and difficult to work with
+* GameCI and GitHub Actions functioning
