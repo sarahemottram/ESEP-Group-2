@@ -8,6 +8,8 @@ namespace PacMan
     public class PlayerController : MonoBehaviour
     {
         private PlayerLocomotion locomotion;
+        private PlayerInput input;
+        private PlayerLife life;
         [SerializeField]
         float speed;
 
@@ -19,32 +21,36 @@ namespace PacMan
 
         private CharacterController characterController;
         private Transform modelTransform;
-
-        public Vector3 startLocation;
+        private new Camera camera;
 
         // Start is called before the first frame update
         void Start()
         {
             characterController = GetComponent<CharacterController>();
             locomotion = GetComponent<PlayerLocomotion>();
+            input = GetComponent<PlayerInput>();
             modelTransform = transform.Find("Pac-Model");
-            startLocation = transform.position;
+            GetComponent<PlayerReset>().SetStartLocation(transform.position);
+            life = GetComponent<PlayerLife>();
+            camera = Camera.main;
         }
 
         private void Update()
         {
+            if (!characterController.enabled)
+                return;
             CameraRelativeMovement();
         }
 
         private void CameraRelativeMovement()
         {
             // Inputs
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
+            float horizontal = input.Horizontal;
+            float vertical = input.Vertical;
 
             // Camera direction
-            Vector3 forward = Camera.main.transform.forward;
-            Vector3 right = Camera.main.transform.right;
+            Vector3 forward = camera.transform.forward;
+            Vector3 right = camera.transform.right;
 
             forward.y = 0f; //Vector is horizontal
             right.y = 0f; //Vector is horizontal
@@ -55,11 +61,6 @@ namespace PacMan
 
             // Move the player
             characterController.Move(speed * Time.deltaTime * moveDirection);
-        }
-        
-        public void ResetPosition()
-        {
-            transform.position = startLocation;
         }
     }
 }

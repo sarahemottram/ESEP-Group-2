@@ -1,20 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace PacMan
 {
     public class PlayerLife : MonoBehaviour
     {
-        [SerializeField]
-        Text lifeCount;
+        public event Action<int> OnLivesChanged;
 
-        public int lives = 3;
-
-        public void Update()
+        private int lives = 3;
+        public int Lives
         {
-            lifeCount.text = lives.ToString();
+            get => lives;
+            private set
+            {
+                lives = value;
+                OnLivesChanged?.Invoke(lives);
+            }
         }
+        private void Start() => UIManager.Instance.SubscribeLives(this);
+
+        public void LoseLife() => Lives--;
+
     }
 }

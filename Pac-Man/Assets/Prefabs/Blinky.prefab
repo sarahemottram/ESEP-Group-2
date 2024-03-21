@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6066966559673798635}
   - component: {fileID: 1953704085176923039}
   - component: {fileID: 5791884459401656504}
+  - component: {fileID: 5905607862921619674}
   m_Layer: 7
   m_Name: Blinky
   m_TagString: Blinky
@@ -121,6 +122,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isScattered: 0
+--- !u!114 &5905607862921619674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190719290593056087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26eb2bcf538dcf647b16b16a54a56cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chase: {fileID: 2338935129460954124}
+  scatter: {fileID: 3143258315033130374}
 --- !u!1001 &2882066708691858407
 PrefabInstance:
   m_ObjectHideFlags: 0

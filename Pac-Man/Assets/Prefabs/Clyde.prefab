@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5625770782290024338}
   - component: {fileID: 2314754946205802039}
   - component: {fileID: 972004908844767623}
+  - component: {fileID: 7672111736264551122}
   m_Layer: 7
   m_Name: Clyde
   m_TagString: Clyde
@@ -121,6 +122,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isScattered: 0
+--- !u!114 &7672111736264551122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7620279196601334898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26eb2bcf538dcf647b16b16a54a56cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chase: {fileID: 4901674163593636186}
+  scatter: {fileID: 8806249386864090376}
 --- !u!1001 &4867414637639372465
 PrefabInstance:
   m_ObjectHideFlags: 0

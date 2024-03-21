@@ -1,3 +1,4 @@
+using Codice.CM.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,61 +9,39 @@ namespace PacMan
 {
     public class FailState : MonoBehaviour
     {
-        GameObject player;
-        GameObject virtualCamera;
-        PlayerController playerController;
-        private bool dead;
-        private float deadTimer = 0;
-        private float pauseTime = 3;
 
-        public void Start()
+        public void Die(GameObject player)
         {
-            player = GameObject.FindGameObjectWithTag("Pac-Man");
-            virtualCamera = GameObject.Find("Virtual Camera");
-            playerController = player.GetComponent<PlayerController>();
-        }
-
-        public void Update() 
-        {
-            if (dead && player.GetComponent<PlayerLife>().lives > 0)
-            {
-                deadTimer += Time.deltaTime;
-                if (deadTimer >= pauseTime)
-                {
-                    dead = false;
-                    SoftReset();
-                }
-            }
-            else if (dead && player.GetComponent<PlayerLife>().lives <= 0)
-            {
-                deadTimer += Time.deltaTime;
-                if (deadTimer >= pauseTime)
-                    GameOver();
-            }
-        }
-        public void Die()
-        {
-            var modelTransform = player.transform.Find("Pac-Model");
-            var x = -90;
-
-            playerController.enabled = false; //remove player control
+            var playerInput = player.GetComponent<PlayerInput>();
+            playerInput.enabled = false;//remove player control
+            var virtualCamera = GameObject.Find("Virtual Camera");
             virtualCamera.SetActive(false); //turns off virtual camera (to fix a bug)
-            modelTransform.rotation = Quaternion.Euler(x, 0, 0); //flips pac-man on his back
-
-            dead = true; //this triggers the update loop to pause and reset
+            player.transform.GetChild(0).transform.rotation = Quaternion.Euler(-90, 0, 0); //flips pac-man on his back
+            var playerLife = player.GetComponent<PlayerLife>();
+            playerLife.LoseLife();
+            StartCoroutine(Die(playerInput, virtualCamera, playerLife, player.GetComponent<PlayerReset>(), 3));
         }
 
-        private void SoftReset()
+        private IEnumerator Die(PlayerInput playerInput, GameObject virtualCamera, PlayerLife playerLife, PlayerReset playerReset, float time)
+        {
+            yield return new WaitForSeconds(time);
+            if (playerLife.Lives <= 0)
+            {
+                GameOver();
+                yield break;
+            }
+            SoftReset(playerInput, playerReset, virtualCamera);
+        }
+
+        public void SoftReset(PlayerInput playerInput, PlayerReset playerReset, GameObject virtualCamera)
         {
             //todo play sound effect
-            playerController.ResetPosition(); //resets player to beginning position
-            player.GetComponent<PlayerLife>().lives--; //removes life
-            playerController.enabled = true; //gives player controll back
-            deadTimer = 0;
-            virtualCamera.gameObject.SetActive(true); //turns back on virtual camera
+            playerReset.ResetPosition(); //resets player to beginning position
+            playerInput.enabled = true; //gives player controll back
+            virtualCamera.SetActive(true); //turns back on virtual camera
         }
 
-            private void GameOver()
+        private void GameOver()
         {
             SceneManager.LoadScene("Game Over");
         }

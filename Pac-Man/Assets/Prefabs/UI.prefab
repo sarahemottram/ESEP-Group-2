@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 92294497873725191}
   - component: {fileID: 2953712333892408168}
   - component: {fileID: 6956822024978394988}
+  - component: {fileID: 1338768414122375186}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -249,6 +250,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1338768414122375186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2972177751582552292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e205dc25066584f9ada7de3162e41f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livesText: {fileID: 2995691267950903404}
+  scoreText: {fileID: 8277837938029117016}
 --- !u!1 &7169517788963509233
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +355,7 @@ GameObject:
   - component: {fileID: 2869216312442531624}
   - component: {fileID: 8277837938029117016}
   m_Layer: 5
-  m_Name: Life Count
+  m_Name: Score Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

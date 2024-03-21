@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,17 @@ namespace PacMan
 {
     public class PelletController : MonoBehaviour
     {
-        public int score;
-        [SerializeField]
-        Text scoreCount;
+        public event Action<int> OnScoreChanged;
+        public int Score
+        {
+            get => score;
+            set
+            {
+                score = value;
+                OnScoreChanged?.Invoke(score);
+            }
+        }
+        private int score;
 
         public GameObject inky;
         public GameObject blinky;
@@ -18,17 +27,13 @@ namespace PacMan
 
         private void Start()
         {
+            UIManager.Instance.SubscribeScore(this);
             InitializeGhosts();
-        }
-
-        private void Update()
-        {
-            scoreCount.text = score.ToString();
         }
 
         public void InitializeGhosts()
         {
-            score = 0;
+            Score = 0;
             inky = GameObject.FindGameObjectWithTag("Inky");
             blinky = GameObject.FindGameObjectWithTag("Blinky");
             pinky = GameObject.FindGameObjectWithTag("Pinky");
@@ -37,14 +42,14 @@ namespace PacMan
 
         public void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.CompareTag("Pellet"))
+            if (other.gameObject.CompareTag("Pellet"))
             {
-                score++;
+                Score++;
                 Destroy(other.gameObject);
             }
-            else if(other.gameObject.CompareTag("Power Pellet"))
+            else if (other.gameObject.CompareTag("Power Pellet"))
             {
-                score++;
+                Score++;
                 inky.GetComponent<GhostLogic>().Scatter();
                 blinky.GetComponent<GhostLogic>().Scatter();
                 pinky.GetComponent<GhostLogic>().Scatter();

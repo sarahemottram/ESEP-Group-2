@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8025397812647890977}
   - component: {fileID: 8022891462152155678}
   - component: {fileID: 8975456854066625253}
+  - component: {fileID: 6720127574571599745}
   m_Layer: 7
   m_Name: Pinky
   m_TagString: Pinky
@@ -121,6 +122,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isScattered: 0
+--- !u!114 &6720127574571599745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7254306689749241477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26eb2bcf538dcf647b16b16a54a56cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chase: {fileID: 5528680837548486251}
+  scatter: {fileID: 8984180671137451715}
 --- !u!1001 &5418789746625956224
 PrefabInstance:
   m_ObjectHideFlags: 0

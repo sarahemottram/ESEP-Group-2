@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,29 +9,30 @@ namespace PacMan
     public class WinState : MonoBehaviour
     {
         PelletController pelletController;
-        PlayerController player;
-        private float winTimer = 0;
+        PlayerInput playerInput;
         private float pauseTime = 3;
         // Start is called before the first frame update
-        void Start()
+        public void Start()
         {
-            pelletController = this.gameObject.GetComponent<PelletController>();
-            player = this.gameObject.GetComponent<PlayerController>();
+            pelletController = GetComponent<PelletController>();
+            pelletController.OnScoreChanged += ScoreChanged;
+            playerInput = GetComponent<PlayerInput>();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void ScoreChanged(int score)
         {
-            if (pelletController.score == 244)
+            if (score == 244)
             {
                 //play sound
-                player.gameObject.GetComponent<PlayerController>().enabled = false; //remove player control
-                winTimer += Time.deltaTime;
-                if (winTimer >= pauseTime)
-                {
-                    SceneManager.LoadScene("Win");
-                }
+                playerInput.enabled = false; //remove player control
+                StartCoroutine(LoadWinScreen());
             }
-        }  
+        }
+
+        private IEnumerator LoadWinScreen()
+        {
+            yield return new WaitForSeconds(pauseTime);
+            SceneManager.LoadScene("Win");
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace PacMan
         {
             if (other.gameObject.CompareTag("Pac-Man") && !isScattered)
             {
-                failState.Die();
+                failState.Die(other.gameObject);
             }
             else if (other.gameObject.CompareTag("Pac-Man") && isScattered)
             {
@@ -29,12 +29,14 @@ namespace PacMan
                 Destroy(this.gameObject);
             }
         }
-        void Chase ()
+        void Chase()
         {
             isScattered = false;
-            //set model to chase
-            this.transform.Find("Chase").gameObject.SetActive(true);
-            this.transform.Find("Scatter").gameObject.SetActive(false);
+
+            if (TryGetComponent<GhostModelSwitcher>(out var switcher))
+            {
+                switcher.Toggle(isScattered);
+            }
 
             //ghost movement behaivor to chase pac man
         }
@@ -42,9 +44,11 @@ namespace PacMan
         {
             isScattered = true;
             Debug.Log("Ghosts in scatter!");
-            //change model to scatter
-            this.transform.Find("Scatter").gameObject.SetActive(true);
-            this.transform.Find("Chase").gameObject.SetActive(false);
+
+            if (TryGetComponent<GhostModelSwitcher>(out var switcher))
+            {
+                switcher.Toggle(isScattered);
+            }
 
             //ghost movement behaviero to run from pac man
 

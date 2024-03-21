@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5421463427078754240}
   - component: {fileID: 4563582855160357943}
   - component: {fileID: 7604190442756074340}
+  - component: {fileID: 8094087787065274656}
   m_Layer: 7
   m_Name: Inky
   m_TagString: Inky
@@ -121,6 +122,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isScattered: 0
+--- !u!114 &8094087787065274656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297404575174604769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26eb2bcf538dcf647b16b16a54a56cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chase: {fileID: 4806104276080712863}
+  scatter: {fileID: 2682673805556735115}
 --- !u!1001 &2499635101731208032
 PrefabInstance:
   m_ObjectHideFlags: 0

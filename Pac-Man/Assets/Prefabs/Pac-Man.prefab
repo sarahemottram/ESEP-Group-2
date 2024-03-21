@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 5428534151346832479}
   - component: {fileID: 8480641224205451570}
   - component: {fileID: 7446660552835903472}
+  - component: {fileID: 7599156003021351668}
+  - component: {fileID: 985896188732489980}
   m_Layer: 6
   m_Name: Pac-Man
   m_TagString: Pac-Man
@@ -177,7 +179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9684bbd60d53844ca4a93aa1cb80ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
   inky: {fileID: 0}
   blinky: {fileID: 0}
   pinky: {fileID: 0}
@@ -194,8 +195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de481ff482f2cf4ab7996132bc85ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 3
-  startLocation: {x: 0, y: 0, z: 0}
 --- !u!114 &7446660552835903472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +205,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61667b05618029646a2a356e0dacad02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7599156003021351668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199195053360138107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acf97a2a5d8462408fae4fc690072b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &985896188732489980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199195053360138107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83cfc3c88e044ed4e8e63e45f97c6a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7355286728246302977

@@ -2,14 +2,16 @@ using NUnit.Framework;
 using UnityEngine.TestTools;
 using System.Collections;
 using PacMan;
-using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [TestFixture]
 public class PacManTests
 {
     //Test GameObject Setup
     private GameObject testObjectPlayer;
+    private GameObject testObjectModel;
     private GameObject testObjectLocomotive;
     private GameObject testObjectPellet;
     private GameObject testObjectPowerPellet;
@@ -17,12 +19,25 @@ public class PacManTests
     private GameObject testObjectBlinky;
     private GameObject testObjectPinky;
     private GameObject testObjectClyde;
+    private GameObject testObjectVirtualCamera;
+    private GameObject testFailState;
+    private GameObject uiManager;
+    private GameObject uiScore;
+    private GameObject uiLives;
     [SetUp]
     public void Setup()
     {
         testObjectPlayer = new GameObject("mappy");
+        testObjectPlayer.tag = "Pac-Man";
         testObjectPlayer.AddComponent<SphereCollider>();
         testObjectPlayer.AddComponent<PelletController>();
+        testObjectPlayer.AddComponent<PlayerInput>();
+        testObjectPlayer.AddComponent<PlayerReset>();
+        testObjectPlayer.AddComponent<PlayerLife>();
+        testObjectPlayer.AddComponent<WinState>();
+
+        testObjectModel = new GameObject("Pac-Man Model");
+        testObjectModel.transform.parent = testObjectPlayer.transform;
 
         testObjectLocomotive = new GameObject("amogus");
         testObjectLocomotive.AddComponent<PlayerLocomotion>();
@@ -50,20 +65,42 @@ public class PacManTests
         testObjectClyde = new GameObject("clyde");
         testObjectClyde.AddComponent<GhostLogic>();
         testObjectClyde.tag = "Clyde";
+
+        testObjectVirtualCamera = new GameObject("Virtual Camera");
+
+        testFailState = new GameObject("youwu luwus");
+        testFailState.AddComponent<FailState>();
+
+        uiManager = new GameObject("UI Manager :>");
+        var uim = uiManager.AddComponent<UIManager>();
+        uiManager.AddComponent<Canvas>();
+
+        uiScore = new GameObject("Score Count");
+        uim.scoreText = uiScore.AddComponent<Text>();
+        uiScore.transform.SetParent(uiManager.transform);
+
+        uiLives = new GameObject("Life Count");
+        uim.livesText = uiLives.AddComponent<Text>();
+        uiLives.transform.SetParent(uiManager.transform);
     }
     [TearDown]
     public void TearDown()
     {
-        Object.Destroy(testObjectPlayer);
+        Object.DestroyImmediate(testObjectPlayer);
         Object.DestroyImmediate(testObjectLocomotive);
         Object.DestroyImmediate(testObjectPellet);
         Object.DestroyImmediate(testObjectPowerPellet);
-        Object.DestroyImmediate (testObjectInky);
+        Object.DestroyImmediate(testObjectInky);
         Object.DestroyImmediate(testObjectBlinky);
         Object.DestroyImmediate(testObjectPinky);
         Object.DestroyImmediate(testObjectClyde);
+        Object.DestroyImmediate(testObjectVirtualCamera);
+        Object.DestroyImmediate(testFailState);
+        Object.DestroyImmediate(uiManager);
+        Object.DestroyImmediate(uiScore);
+        Object.DestroyImmediate(uiLives);
     }
-    
+
     //Tests for PlayerLocomotion
     [Test]
     public void GetMovement_ForwardMovement_ReturnsCorrectValues()
@@ -75,10 +112,8 @@ public class PacManTests
         float vertical = 1f;
         Vector3 forward = Vector3.forward;
         Vector3 right = Vector3.right;
-        Vector3 moveDirection;
-        Quaternion targetRotation;
 
-        playerLocomotion.GetMovement(modelRotation, cameraRotationSpeed, horizontal, vertical, forward, right, out moveDirection, out targetRotation);
+        playerLocomotion.GetMovement(modelRotation, cameraRotationSpeed, horizontal, vertical, forward, right, out Vector3 moveDirection, out Quaternion targetRotation);
 
         Assert.AreEqual(forward, moveDirection);
         Assert.AreEqual(Quaternion.LookRotation(forward), targetRotation);
@@ -94,10 +129,8 @@ public class PacManTests
         float vertical = -1f;
         Vector3 forward = Vector3.forward;
         Vector3 right = Vector3.right;
-        Vector3 moveDirection;
-        Quaternion targetRotation;
 
-        playerLocomotion.GetMovement(modelRotation, cameraRotationSpeed, horizontal, vertical, forward, right, out moveDirection, out targetRotation);
+        playerLocomotion.GetMovement(modelRotation, cameraRotationSpeed, horizontal, vertical, forward, right, out Vector3 moveDirection, out Quaternion targetRotation);
 
         Assert.AreEqual(-forward, moveDirection);
         Assert.AreEqual(Quaternion.LookRotation(-forward), targetRotation);
@@ -113,10 +146,8 @@ public class PacManTests
         float vertical = 0f;
         Vector3 forward = Vector3.forward;
         Vector3 right = Vector3.right;
-        Vector3 moveDirection;
-        Quaternion targetRotation;
 
-        playerLocomotion.GetMovement(modelRotation, cameraRotationSpeed, horizontal, vertical, forward, right, out moveDirection, out targetRotation);
+        playerLocomotion.GetMovement(modelRotation, cameraRotationSpeed, horizontal, vertical, forward, right, out Vector3 moveDirection, out Quaternion targetRotation);
 
         Assert.AreEqual(-right, moveDirection);
         Assert.AreEqual(Quaternion.LookRotation(-right), targetRotation);
@@ -132,10 +163,8 @@ public class PacManTests
         float vertical = 0f;
         Vector3 forward = Vector3.forward;
         Vector3 right = Vector3.right;
-        Vector3 moveDirection;
-        Quaternion targetRotation;
 
-        playerLocomotion.GetMovement(modelRotation, cameraRotationSpeed, horizontal, vertical, forward, right, out moveDirection, out targetRotation);
+        playerLocomotion.GetMovement(modelRotation, cameraRotationSpeed, horizontal, vertical, forward, right, out Vector3 moveDirection, out Quaternion targetRotation);
 
         Assert.AreEqual(right, moveDirection);
         Assert.AreEqual(Quaternion.LookRotation(right), targetRotation);
@@ -151,10 +180,8 @@ public class PacManTests
         float vertical = 0f;
         Vector3 forward = Vector3.forward;
         Vector3 right = Vector3.right;
-        Vector3 moveDirection;
-        Quaternion targetRotation;
 
-        playerLocomotion.GetMovement(modelRotation, cameraRotationSpeed, horizontal, vertical, forward, right, out moveDirection, out targetRotation);
+        playerLocomotion.GetMovement(modelRotation, cameraRotationSpeed, horizontal, vertical, forward, right, out Vector3 moveDirection, out Quaternion targetRotation);
 
         Assert.AreEqual(Vector3.zero, moveDirection);
         Assert.AreEqual(modelRotation, targetRotation);
@@ -167,13 +194,13 @@ public class PacManTests
         // Arrange
         var pelletController = testObjectPlayer.GetComponent<PelletController>();
         var pelletCollider = testObjectPellet.GetComponent<SphereCollider>();
-        int initialScore = pelletController.score;
+        int initialScore = pelletController.Score;
 
         // Act
         pelletController.OnTriggerEnter(pelletCollider);
 
         // Assert
-        Assert.AreEqual(initialScore + 1, pelletController.score);
+        Assert.AreEqual(initialScore + 1, pelletController.Score);
     }
 
     [Test]
@@ -183,13 +210,13 @@ public class PacManTests
         var pelletController = testObjectPlayer.GetComponent<PelletController>();
         pelletController.InitializeGhosts();
         var pelletCollider = testObjectPowerPellet.GetComponent<SphereCollider>();
-        int initialScore = pelletController.score;
+        int initialScore = pelletController.Score;
 
         // Act
         pelletController.OnTriggerEnter(pelletCollider);
 
         // Assert
-        Assert.AreEqual(initialScore + 1, pelletController.score);
+        Assert.AreEqual(initialScore + 1, pelletController.Score);
     }
 
     [Test]
@@ -249,5 +276,171 @@ public class PacManTests
 
         // Assert
         Assert.IsFalse(ghostLogic.isScattered);
+    }
+
+    //Failstate Tests
+    [Test]
+    public void LivesReduce_OnDeath()
+    {
+        //Arrange
+        var playerLives = testObjectPlayer.GetComponent<PlayerLife>();
+        var lives = playerLives.Lives;
+        var failState = testFailState.GetComponent<FailState>();
+
+        //Act
+        failState.Die(testObjectPlayer);
+
+        //Assert
+        Assert.AreEqual(lives - 1, playerLives.Lives);
+    }
+
+    [Test]
+    public void PacManRotates_OnDeath()
+    {
+        //Arrange
+        var failState = testFailState.GetComponent<FailState>();
+        
+        //Act
+        failState.Die(testObjectPlayer);
+
+        // Assert
+        var expected = Quaternion.Euler(-90, 0, 0);
+        var result = testObjectModel.transform.rotation;
+        float threshold = 0.0001f;
+        Assert.IsTrue(Quaternion.Angle(expected, result) < threshold);
+    }
+
+    [Test]
+    public void LifeEventsFire()
+    {
+        //Arrange
+        var playerLives = testObjectPlayer.GetComponent<PlayerLife>();
+        var lives = playerLives.Lives;
+        int result = int.MaxValue;
+        playerLives.OnLivesChanged += i => result = i;
+        
+        //Act
+        playerLives.LoseLife();
+
+        //Assert
+        Assert.AreEqual(lives - 1, result);
+    }
+
+    [UnityTest]
+    public IEnumerator GameOverLoads_On3Deaths()
+    {
+        //Arrange
+        var playerLives = testObjectPlayer.GetComponent<PlayerLife>();
+        var failState = testFailState.GetComponent<FailState>();
+
+        //Act
+        playerLives.LoseLife();
+        playerLives.LoseLife();
+        failState.Die(testObjectPlayer);
+
+        bool gameOverSceneLoaded = false;
+        SceneManager.sceneLoaded += (scene, mode) =>
+        {
+            if (scene.name == "Game Over")
+            {
+                gameOverSceneLoaded = true;
+            }
+        };
+
+        // Wait for the pause time
+        yield return new WaitForSeconds(3.5f);
+
+        // Assert
+        Assert.IsTrue(gameOverSceneLoaded, "Game Over scene should be loaded when you die 3 times");
+    }
+
+    [UnityTest]
+    public IEnumerator GameOverDoesNotLoad_On1Death()
+    {
+        //Arrange
+        var playerLives = testObjectPlayer.GetComponent<PlayerLife>();
+        var failState = testFailState.GetComponent<FailState>();
+
+        //Act
+        failState.Die(testObjectPlayer);
+
+        bool gameOverSceneLoaded = false;
+        SceneManager.sceneLoaded += (scene, mode) =>
+        {
+            if (scene.name == "Game Over")
+            {
+                gameOverSceneLoaded = true;
+            }
+        };
+
+        // Wait for the pause time
+        yield return new WaitForSeconds(3.5f);
+
+        // Assert
+        Assert.IsFalse(gameOverSceneLoaded, "Game Over scene should not load when you die 1 time");
+    }
+
+    //WinState Tests
+    [Test]
+    public void PelletEventsFire()
+    {
+        //Arrange
+        var controller = testObjectPlayer.GetComponent<PelletController>();
+        int result = 0;
+        controller.OnScoreChanged += i => result = i;
+        
+        //Act
+        controller.Score += 1;
+        
+        //Assert
+        Assert.AreEqual(controller.Score, result);
+    }
+
+    [UnityTest]
+    public IEnumerator PelletController_Score244_LoadsWinScene()
+    {
+        // Arrange
+        bool winSceneLoaded = false;
+        SceneManager.sceneLoaded += (scene, mode) =>
+        {
+            if (scene.name == "Win")
+            {
+                winSceneLoaded = true;
+            }
+        };
+
+        // Act
+        // Trigger score change to 244
+        testObjectPlayer.GetComponent<PelletController>().Score = 244;
+
+        // Wait for the pause time
+        yield return new WaitForSeconds(5);
+
+        // Assert
+        Assert.IsTrue(winSceneLoaded, "Win scene should be loaded when score reaches 244");
+    }
+
+    [UnityTest]
+    public IEnumerator PelletController_ScoreNot244_DoesNotLoadWinScene()
+    {
+        // Arrange
+        bool winSceneLoaded = false;
+        SceneManager.sceneLoaded += (scene, mode) =>
+        {
+            if (scene.name == "Win")
+            {
+                winSceneLoaded = true;
+            }
+        };
+
+        // Act
+        // Trigger score change to something other than 244
+        testObjectPlayer.GetComponent<PelletController>().Score = 100;
+
+        // Wait for the pause time
+        yield return new WaitForSeconds(5);
+
+        // Assert
+        Assert.IsFalse(winSceneLoaded, "Win scene should not be loaded when score is not 244");
     }
 }
