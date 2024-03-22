@@ -1,14 +1,12 @@
 # Sprint 2 Review  
 ## What we completed in Sprint 2
-CHANGE ALL THIS LATER TO WHAT WE DID
-* Created and implemented 3D models for Pac-Man and the Ghosts
-* Created wall object with a texture similar to the original game
-* Attatched camera to player (it follows the player around)
-* Player rotates to face direction of travel
-* Adjusted demo movement to be relative to camera
-* Created Pellet and Power Pellet Game Objects
-  * Touching a pellet deletes it and makes the player score go up
-  * Touching a power pellet deletes it, makes the score go up, and changes ghosts from "Chase" mode to "Scatter" mode (unimplemented)
+* Player collision with ghosts in chase mode
+  * If the player has > 0 lives the level resets and player loses a life
+  * If the player has 0 lives it takes them to a game over screen
+* Level layout completed
+* UI completed
+  * Shows lives remaining and score
+* When the player collects all pellets it takes them to a you win screen
 
 ## What went well?
 * Mob programming went very well
