@@ -9,11 +9,11 @@
   * Working on implementing GameCI
 ## Next 24 hours activities: 
 * Aayushi
-  * Mob programming for UI and Testing
+  * Mob programming to create UI and fix bugs
 * Sarah  
-  * Mob programming for UI and Testing
+  * Mob programming to create UI and fix bugs
 * Ralph
-  * Mob programming for UI and Testing
+  * Mob programming to create UI and fix bugs
 * Teme
   * Working on implementing GameCI
 ## Impediments faced: 
