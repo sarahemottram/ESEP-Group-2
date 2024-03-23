@@ -1,10 +1,5 @@
-using log4net.Core;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-using System.Linq;
 namespace PacMan
 {
     public class UIManager : MonoBehaviour
