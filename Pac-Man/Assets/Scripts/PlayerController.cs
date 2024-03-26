@@ -23,18 +23,13 @@ namespace PacMan
         // Start is called before the first frame update
         void Start()
         {
-            characterController = GetComponent<CharacterController>();
-            locomotion = GetComponent<PlayerLocomotion>();
-            input = GetComponent<PlayerInput>();
-            modelTransform = transform.Find("Pac-Model");
-            GetComponent<PlayerReset>().SetStartLocation(transform.position);
-            life = GetComponent<PlayerLife>();
-            camera = Camera.main;
+            //Waits for intro tune
+            Invoke(nameof(SetUp), 5f);
         }
 
         private void Update()
         {
-            if (!characterController.enabled)
+            if (characterController == null || !characterController.enabled)
                 return;
             CameraRelativeMovement();
         }
@@ -58,6 +53,17 @@ namespace PacMan
 
             // Move the player
             characterController.Move(speed * Time.deltaTime * moveDirection);
+        }
+
+        private void SetUp()
+        {
+            characterController = GetComponent<CharacterController>();
+            locomotion = GetComponent<PlayerLocomotion>();
+            input = GetComponent<PlayerInput>();
+            modelTransform = transform.Find("Pac-Model");
+            GetComponent<PlayerReset>().SetStartLocation(transform.position);
+            life = GetComponent<PlayerLife>();
+            camera = Camera.main;
         }
     }
 }

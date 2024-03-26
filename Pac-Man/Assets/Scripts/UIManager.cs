@@ -23,8 +23,10 @@ namespace PacMan
         {
             playerLife.OnLivesChanged += lives =>
             {
-
-                livesText.text = lives.ToString();
+                if (lives < 0)
+                    livesText.text = "0";
+                else
+                    livesText.text = lives.ToString();
             };
 
             livesText.text = playerLife.Lives.ToString();

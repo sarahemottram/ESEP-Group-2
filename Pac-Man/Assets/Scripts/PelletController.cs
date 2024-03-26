@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace PacMan
 {
@@ -18,7 +16,10 @@ namespace PacMan
                 OnScoreChanged?.Invoke(score);
             }
         }
+        SoundManager soundManager;
+
         private int score;
+        private int collisionCount = 0; //this exists to monitor if pac-man is touching any pellets
 
         public GameObject inky;
         public GameObject blinky;
@@ -28,6 +29,7 @@ namespace PacMan
         private void Start()
         {
             UIManager.Instance.SubscribeScore(this);
+            soundManager = GetComponent<SoundManager>();
             InitializeGhosts();
         }
 
@@ -44,17 +46,33 @@ namespace PacMan
         {
             if (other.gameObject.CompareTag("Pellet"))
             {
+                soundManager.PlayWaka();
                 Score++;
-                Destroy(other.gameObject);
+                collisionCount++; 
+                other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             }
             else if (other.gameObject.CompareTag("Power Pellet"))
             {
+                soundManager.PlaySiren();
+                soundManager.PauseWaka();
                 Score++;
                 inky.GetComponent<GhostLogic>().Scatter();
                 blinky.GetComponent<GhostLogic>().Scatter();
                 pinky.GetComponent<GhostLogic>().Scatter();
                 clyde.GetComponent<GhostLogic>().Scatter();
+                collisionCount++;
+                other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            }
+        }
+
+        public void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.CompareTag("Pellet") || other.gameObject.CompareTag("Power Pellet"))
+            {
+                collisionCount--;
                 Destroy(other.gameObject);
+                if (collisionCount == 0) //pacman is touching no pellets
+                    soundManager.PauseWaka();
             }
         }
     }

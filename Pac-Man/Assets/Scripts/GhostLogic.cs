@@ -7,25 +7,40 @@ namespace PacMan
 {
     public class GhostLogic : MonoBehaviour
     {
+        SoundManager soundManager;
         public bool isScattered;
+        float scatterTimer = 7;
 
         FailState failState;
 
-        // Start is called before the first frame update
         void Start()
         {
-            failState = this.gameObject.AddComponent<FailState>();
+            soundManager = GameObject.Find("Pac-Man").GetComponent<SoundManager>();
             Chase();
+        }
+
+        private void Update()
+        {
+            if (isScattered)
+            {
+                scatterTimer -= Time.deltaTime;
+                if (scatterTimer < 0 )
+                {
+                    Chase();
+                }
+            }
         }
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Pac-Man") && !isScattered)
             {
+                failState = other.GetComponent<FailState>();
                 failState.Die(other.gameObject);
             }
             else if (other.gameObject.CompareTag("Pac-Man") && isScattered)
             {
                 //this is place holder, this should cause ghosts to die and respawn
+                soundManager.ghostDeath.Play();
                 Destroy(this.gameObject);
             }
         }
@@ -43,16 +58,14 @@ namespace PacMan
         public void Scatter()
         {
             isScattered = true;
-            Debug.Log("Ghosts in scatter!");
+            scatterTimer = 7;
 
             if (TryGetComponent<GhostModelSwitcher>(out var switcher))
             {
                 switcher.Toggle(isScattered);
             }
 
-            //ghost movement behaviero to run from pac man
-
-            Invoke(nameof(Chase), 7f); //Go back to chase mode after 7 seconds
+            //ghost movement behavier to run from pac man
         }
     }
 }
