@@ -4,8 +4,14 @@ on: push
 
 jobs:
   build:
-    name: Build for Windows
+    name: Test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        projectPath:
+          - Pac-Man
+        testMode:
+          - playMode
     steps:
       #checkout
       - name: Checkout repository
