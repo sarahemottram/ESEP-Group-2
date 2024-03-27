@@ -6,12 +6,6 @@ jobs:
   build:
     name: Test and Build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        projectPath:
-          - Pac-Man
-        testMode:
-          - playMode
     steps:
       # Checkout
       - name: Checkout repository
@@ -32,8 +26,8 @@ jobs:
       #    UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
       #  with:
       #    githubToken: ${{ secrets.GITHUB_TOKEN }}
-      #    projectPath: ${{ matrix.projectPath }}
-      #    testMode: ${{ matrix.testMode }}
+      #    projectPath: Pac-Man
+      #    testMode: playMode
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v4
@@ -43,7 +37,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: StandaloneWindows64
-          projectPath: ${{ matrix.projectPath }}
+          projectPath: Pac-Man
       # Upload
       - uses: actions/upload-artifact@v3
         with:
