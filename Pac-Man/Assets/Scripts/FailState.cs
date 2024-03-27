@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,11 +7,12 @@ namespace PacMan
 {
     public class FailState : MonoBehaviour
     {
-        SoundManager soundManager;
 
+        public event Action OnDeath;
+        public event Action OnReset;
         private void Start()
         {
-            soundManager = GetComponent<SoundManager>();
+            SoundManager.Instance.SubcribeFailState(this);
         }
 
         public void Die(GameObject player)
@@ -22,12 +24,12 @@ namespace PacMan
             player.transform.GetChild(0).transform.rotation = Quaternion.Euler(-90, 0, 0); //flips pac-man on his back
             var playerLife = player.GetComponent<PlayerLife>();
             playerLife.LoseLife();
-            StartCoroutine(Die(playerInput, virtualCamera, playerLife, player.GetComponent<PlayerReset>(), soundManager.death.clip.length));
+            StartCoroutine(Die(playerInput, virtualCamera, playerLife, player.GetComponent<PlayerReset>(), SoundManager.Instance.DeathClipLength));
         }
 
         private IEnumerator Die(PlayerInput playerInput, GameObject virtualCamera, PlayerLife playerLife, PlayerReset playerReset, float time)
         {
-            soundManager.PlayDeath(); //play death sound
+            OnDeath?.Invoke(); //play death sound
             yield return new WaitForSeconds(time); //wait for death sound
             if (playerLife.Lives < 0)
             {
@@ -41,7 +43,7 @@ namespace PacMan
         {
             playerReset.ResetPosition(); //resets player to beginning position
             virtualCamera.SetActive(true); //turns back on virtual camera
-            soundManager.PlayLoop(); //plays beginning music
+            OnReset?.Invoke(); //plays beginning music
             yield return new WaitForSeconds(5f); //waits for intro tune
             playerInput.enabled = true; //gives player controll back
         }

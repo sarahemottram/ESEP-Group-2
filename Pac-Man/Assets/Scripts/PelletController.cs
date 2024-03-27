@@ -6,6 +6,8 @@ namespace PacMan
 {
     public class PelletController : MonoBehaviour
     {
+        public event Action<bool> OnWaka;
+        public event Action OnPowerPellet;
         public event Action<int> OnScoreChanged;
         public int Score
         {
@@ -16,7 +18,6 @@ namespace PacMan
                 OnScoreChanged?.Invoke(score);
             }
         }
-        SoundManager soundManager;
 
         private int score;
         private int collisionCount = 0; //this exists to monitor if pac-man is touching any pellets
@@ -29,7 +30,7 @@ namespace PacMan
         private void Start()
         {
             UIManager.Instance.SubscribeScore(this);
-            soundManager = GetComponent<SoundManager>();
+            SoundManager.Instance.SubscribePellet(this);
             InitializeGhosts();
         }
 
@@ -46,15 +47,15 @@ namespace PacMan
         {
             if (other.gameObject.CompareTag("Pellet"))
             {
-                soundManager.PlayWaka();
+                OnWaka?.Invoke(true);
                 Score++;
                 collisionCount++; 
                 other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             }
             else if (other.gameObject.CompareTag("Power Pellet"))
             {
-                soundManager.PlaySiren();
-                soundManager.PauseWaka();
+                OnPowerPellet?.Invoke();
+                OnWaka?.Invoke(false);
                 Score++;
                 inky.GetComponent<GhostLogic>().Scatter();
                 blinky.GetComponent<GhostLogic>().Scatter();
@@ -72,7 +73,7 @@ namespace PacMan
                 collisionCount--;
                 Destroy(other.gameObject);
                 if (collisionCount == 0) //pacman is touching no pellets
-                    soundManager.PauseWaka();
+                    OnWaka?.Invoke(false);
             }
         }
     }

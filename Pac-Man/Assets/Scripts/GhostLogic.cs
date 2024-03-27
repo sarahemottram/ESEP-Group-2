@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace PacMan
 {
     public class GhostLogic : MonoBehaviour
     {
-        SoundManager soundManager;
+        public event Action OnGhostDeath;
         public bool isScattered;
         float scatterTimer = 7;
 
@@ -15,8 +16,8 @@ namespace PacMan
 
         void Start()
         {
-            soundManager = GameObject.Find("Pac-Man").GetComponent<SoundManager>();
             Chase();
+            SoundManager.Instance.SubscribeGhostDeath(this);
         }
 
         private void Update()
@@ -40,7 +41,7 @@ namespace PacMan
             else if (other.gameObject.CompareTag("Pac-Man") && isScattered)
             {
                 //this is place holder, this should cause ghosts to die and respawn
-                soundManager.ghostDeath.Play();
+                OnGhostDeath?.Invoke();
                 Destroy(this.gameObject);
             }
         }

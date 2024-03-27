@@ -22,11 +22,15 @@ public class PacManTests
     private GameObject testObjectVirtualCamera;
     private GameObject testFailState;
     private GameObject uiManager;
+    private GameObject soundManager;
     private GameObject uiScore;
     private GameObject uiLives;
     [SetUp]
     public void Setup()
     {
+        soundManager = new GameObject("sond manger");
+        soundManager.AddComponent<SoundManager>();
+
         testObjectPlayer = new GameObject("mappy");
         testObjectPlayer.tag = "Pac-Man";
         testObjectPlayer.AddComponent<SphereCollider>();
@@ -44,10 +48,12 @@ public class PacManTests
 
         testObjectPellet = new GameObject("skibidy");
         testObjectPellet.AddComponent<SphereCollider>();
+        testObjectPellet.AddComponent<MeshRenderer>();
         testObjectPellet.tag = "Pellet";
 
         testObjectPowerPellet = new GameObject("toilet");
         testObjectPowerPellet.AddComponent<SphereCollider>();
+        testObjectPowerPellet.AddComponent<MeshRenderer>();
         testObjectPowerPellet.tag = "Power Pellet";
 
         testObjectInky = new GameObject("inky");
@@ -82,6 +88,7 @@ public class PacManTests
         uiLives = new GameObject("Life Count");
         uim.livesText = uiLives.AddComponent<Text>();
         uiLives.transform.SetParent(uiManager.transform);
+ 
     }
     [TearDown]
     public void TearDown()
@@ -99,6 +106,7 @@ public class PacManTests
         Object.DestroyImmediate(uiManager);
         Object.DestroyImmediate(uiScore);
         Object.DestroyImmediate(uiLives);
+        Object.DestroyImmediate(soundManager);
     }
 
     //Tests for PlayerLocomotion
@@ -327,13 +335,14 @@ public class PacManTests
     }
 
     [UnityTest]
-    public IEnumerator GameOverLoads_On3Deaths()
+    public IEnumerator GameOverLoads_On4Deaths()
     {
         //Arrange
         var playerLives = testObjectPlayer.GetComponent<PlayerLife>();
         var failState = testFailState.GetComponent<FailState>();
 
         //Act
+        playerLives.LoseLife();
         playerLives.LoseLife();
         playerLives.LoseLife();
         failState.Die(testObjectPlayer);

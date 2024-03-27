@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -8,14 +9,14 @@ namespace PacMan
 {
     public class WinState : MonoBehaviour
     {
-        SoundManager soundManager;
         PelletController pelletController;
         PlayerInput playerInput;
+        public event Action OnWin;
 
         // Start is called before the first frame update
         public void Start()
         {
-            soundManager = GetComponent<SoundManager>();
+            SoundManager.Instance.SubscribeWin(this);
             pelletController = GetComponent<PelletController>();
             pelletController.OnScoreChanged += ScoreChanged;
             playerInput = GetComponent<PlayerInput>();
@@ -25,7 +26,7 @@ namespace PacMan
         {
             if (score == 244)
             {
-                soundManager.PlayEnd();
+                OnWin?.Invoke();
                 playerInput.enabled = false; //remove player control
                 StartCoroutine(LoadWinScreen());
             }
@@ -33,7 +34,7 @@ namespace PacMan
 
         private IEnumerator LoadWinScreen()
         {
-            yield return new WaitForSeconds(soundManager.end.clip.length);
+            yield return new WaitForSeconds(SoundManager.Instance.EndClipLength);
             SceneManager.LoadScene("Win");
         }
     }
