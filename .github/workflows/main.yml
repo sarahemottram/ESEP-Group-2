@@ -38,6 +38,7 @@ jobs:
         with:
           targetPlatform: StandaloneWindows64
           projectPath: Pac-Man
+          allowDirtyBuild: true
       # Upload
       - uses: actions/upload-artifact@v3
         with:
