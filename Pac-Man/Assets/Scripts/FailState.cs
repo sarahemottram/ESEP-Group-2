@@ -26,6 +26,7 @@ namespace PacMan
         public void Die(GameObject player)
         {
             var playerInput = player.GetComponent<PlayerInput>();
+            player.GetComponent<PelletController>().collisionCount = 0;
             playerInput.enabled = false;//remove player control
             var virtualCamera = GameObject.Find("Virtual Camera");
             virtualCamera.SetActive(false); //turns off virtual camera

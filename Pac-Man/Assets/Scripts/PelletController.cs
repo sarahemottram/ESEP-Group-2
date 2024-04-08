@@ -19,7 +19,7 @@ namespace PacMan
         }
 
         private int score;
-        private int collisionCount = 0; //this exists to monitor if pac-man is touching any pellets
+        internal int collisionCount = 0; //this exists to monitor if pac-man is touching any pellets
 
         public GameObject inky;
         public GameObject blinky;
