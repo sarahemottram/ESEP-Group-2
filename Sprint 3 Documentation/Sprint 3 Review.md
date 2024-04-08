@@ -1,4 +1,4 @@
-# Sprint 2 Review  
+# Sprint 3 Review  (UPDATE THIS FOR SPRINT 3)
 ## What we completed in Sprint 2
 * Player collision with ghosts in chase mode
   * If the player has > 0 lives the level resets and player loses a life
