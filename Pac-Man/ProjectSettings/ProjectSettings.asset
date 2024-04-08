@@ -139,7 +139,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.0.109
+  bundleVersion: 0.0.111
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -163,7 +163,7 @@ PlayerSettings:
   applicationIdentifier:
     Standalone: com.DefaultCompany.Pac-Man
   buildNumber:
-    Standalone: 0.0.108
+    Standalone: 0.0.110
     VisionOS: 0
     iPhone: 0
     tvOS: 0
