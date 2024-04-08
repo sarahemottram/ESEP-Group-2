@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 namespace PacMan
 {
@@ -10,8 +7,8 @@ namespace PacMan
     {
         public event Action OnGhostDeath;
         public bool isScattered;
+        internal bool isDead;
         float scatterTimer = 7;
-
         FailState failState;
 
         void Start()
@@ -40,12 +37,11 @@ namespace PacMan
             }
             else if (other.gameObject.CompareTag("Pac-Man") && isScattered)
             {
-                //this is place holder, this should cause ghosts to die and respawn
                 OnGhostDeath?.Invoke();
-                Destroy(this.gameObject);
+                isDead = true;
             }
         }
-        void Chase()
+        internal void Chase()
         {
             isScattered = false;
 

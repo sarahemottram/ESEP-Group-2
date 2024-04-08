@@ -5,6 +5,7 @@ using PacMan;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 [TestFixture]
 public class PacManTests
@@ -58,24 +59,40 @@ public class PacManTests
 
         testObjectInky = new GameObject("inky");
         testObjectInky.AddComponent<GhostLogic>();
+        testObjectInky.AddComponent<GhostNavigation>();
+        testObjectInky.AddComponent<NavMeshAgent>();
+        testObjectInky.AddComponent<SphereCollider>();
         testObjectInky.tag = "Inky";
 
         testObjectBlinky = new GameObject("blinky");
         testObjectBlinky.AddComponent<GhostLogic>();
+        testObjectBlinky.AddComponent<GhostNavigation>();
+        testObjectBlinky.AddComponent<NavMeshAgent>();
+        testObjectBlinky.AddComponent<SphereCollider>();
         testObjectBlinky.tag = "Blinky";
 
         testObjectPinky = new GameObject("pinky");
         testObjectPinky.AddComponent<GhostLogic>();
+        testObjectPinky.AddComponent<GhostNavigation>();
+        testObjectPinky.AddComponent<NavMeshAgent>();
+        testObjectPinky.AddComponent<SphereCollider>();
         testObjectPinky.tag = "Pinky";
 
         testObjectClyde = new GameObject("clyde");
         testObjectClyde.AddComponent<GhostLogic>();
+        testObjectClyde.AddComponent<GhostNavigation>();
+        testObjectClyde.AddComponent<NavMeshAgent>();
+        testObjectClyde.AddComponent<SphereCollider>();
         testObjectClyde.tag = "Clyde";
 
         testObjectVirtualCamera = new GameObject("Virtual Camera");
 
         testFailState = new GameObject("youwu luwus");
         testFailState.AddComponent<FailState>();
+        testFailState.GetComponent<FailState>().blinky = testObjectBlinky.GetComponent<GhostNavigation>();
+        testFailState.GetComponent<FailState>().pinky = testObjectPinky.GetComponent<GhostNavigation>();
+        testFailState.GetComponent<FailState>().inky = testObjectInky.GetComponent<GhostNavigation>();
+        testFailState.GetComponent<FailState>().clyde = testObjectClyde.GetComponent<GhostNavigation>();
 
         uiManager = new GameObject("UI Manager :>");
         var uim = uiManager.AddComponent<UIManager>();
@@ -335,14 +352,13 @@ public class PacManTests
     }
 
     [UnityTest]
-    public IEnumerator GameOverLoads_On4Deaths()
+    public IEnumerator GameOverLoads_On3Deaths()
     {
         //Arrange
         var playerLives = testObjectPlayer.GetComponent<PlayerLife>();
         var failState = testFailState.GetComponent<FailState>();
 
         //Act
-        playerLives.LoseLife();
         playerLives.LoseLife();
         playerLives.LoseLife();
         failState.Die(testObjectPlayer);

@@ -11,6 +11,7 @@ namespace PacMan
     {
         PelletController pelletController;
         PlayerInput playerInput;
+        SphereCollider playerCollider;
         public event Action OnWin;
 
         // Start is called before the first frame update
@@ -20,6 +21,7 @@ namespace PacMan
             pelletController = GetComponent<PelletController>();
             pelletController.OnScoreChanged += ScoreChanged;
             playerInput = GetComponent<PlayerInput>();
+            playerCollider = GetComponent<SphereCollider>();
         }
 
         private void ScoreChanged(int score)
@@ -28,6 +30,7 @@ namespace PacMan
             {
                 OnWin?.Invoke();
                 playerInput.enabled = false; //remove player control
+                playerCollider.enabled = false;
                 StartCoroutine(LoadWinScreen());
             }
         }
