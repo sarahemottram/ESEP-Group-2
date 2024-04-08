@@ -1,31 +1,37 @@
-# Sprint 3 Review  (UPDATE THIS FOR SPRINT 3)
-## What we completed in Sprint 2
-* Player collision with ghosts in chase mode
-  * If the player has > 0 lives the level resets and player loses a life
-  * If the player has 0 lives it takes them to a game over screen
-* Level layout completed
-* UI completed
-  * Shows lives remaining and score
-* When the player collects all pellets it takes them to a you win screen
+# Sprint 3 Review  
+## What we completed in Sprint 3
+* Player collision with ghosts in scatter mode
+  * Ghosts flip and go back to spawn area  
+* Left-Right continuity
+  * Pac-Man teleports from one side to the other
+* Music and Sound  
+  * "Waka" sound plays when Pac-Man is eating pellets  
+  * "Death" sound plays when Pac-Man touches a ghost in chase mode
+  * "Siren" sound plays when ghosts are in scatter
+  * "Ghost Death" sound plays when Pac-Man eats a ghost in scatter mode
+  * "Intro" plays at the beginning and after each soft reset
+  * Music loops until win or loss
+  * "Win" sound plays when player has completed the game
+* Ghost Movement
+  * Created a NavMesh and made all ghosts NavMeshAgents so ghosts can move
+  * Blinky chases Pac-Man and scatters to top left
+  * Pinky chases above or below Pac-Man depending on where he is and scatters to bottom right
+  * Inky chases the midpoint between Blinky and Pac-Man and scatters to top right
+  * Clyde chases Pac-Man until he's too close, then goes to his scatter position and scatters to bottom left
 
 ## What went well?
 * Mob programming went very well
 * Sprint planning and completing on schedule
   * Product backlog refinement
   * Time Management
-* "Daily" sprint standups were asynchronous 
-
-## What do we want to continue to do moving forward?  
-* Asynchronous standups
-* Mob programming sessions
-* Schedule management
+* "Daily" sprint standups were asynchronous
+* Communication was better than previous sprints
 
 ## What didn't go well?
-* Communication
 * Availability
-* GameCI impementation
 
-## What do we need to change?
-* Everyone needs to be communicating in the Teams chat
-* Everyone needs to show up to agreed upon meeting times
-* Being more proactive to take initiative on tasks
+## Challenges Overcome  
+* maybe not do this
+
+## Lessons Learned and Reflections  
+* maybe not do this
