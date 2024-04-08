@@ -7,15 +7,15 @@ namespace PacMan
     public class GhostNavigation : MonoBehaviour
     {
         [SerializeField]
-        Transform chase;
+        public Transform chase;
         [SerializeField]
-        Transform chase2;
+        public Transform chase2;
 
         private NavMeshAgent agent;
         private GhostLogic ghostLogic;
         private SphereCollider ghostCollider;
-        private Vector3 scatter1;
-        private Vector3 scatter2;
+        public Vector3 scatter1;
+        public Vector3 scatter2;
         private Vector3 agentPosition;
         private Vector3 augmentedChase;
         private Vector3 respawnPosition = new Vector3(0,.5f,2);
@@ -28,7 +28,7 @@ namespace PacMan
 
         private Vector3 startPosition;
 
-        private float ghostTimer;
+        public float ghostTimer;
         // Start is called before the first frame update
         void Start()
         {
@@ -74,7 +74,7 @@ namespace PacMan
             }
         }
 
-        void SetUp()
+        public void SetUp()
         {
             switch (tag) //set scatter to desired quadrent
             {
@@ -167,7 +167,7 @@ namespace PacMan
             if (agent != null && agent.enabled && !ghostLogic.isScattered) //chase mode
             {
                 agent.speed = chaseSpeed;
-                augmentedChase = (chase.position - chase2.position) / 2;
+                augmentedChase = Vector3.Lerp(chase.position, chase2.position, 0.5f); //get half way between pac-man and blinky
                 agent.destination = augmentedChase;
                 agentPosition = agent.transform.position;
             }
@@ -196,11 +196,19 @@ namespace PacMan
                 agent.speed = chaseSpeed;
                 if (Vector3.Distance(agent.transform.position, chase.position) < 5) //when he's too close to pac-man set clydetimer so he goes to scatter spot for 3 seconds
                     clydeTimer = 3;
-                if (clydeTimer > 0)
+
+                if (clydeTimer > 0 && Vector3.Distance(agentPosition, scatter1) > 1)
+                {
                     agent.destination = scatter1;
+                    agentPosition = agent.transform.position;
+                }
+                else if (clydeTimer > 0 && Vector3.Distance(agent.transform.position, scatter2) > 1)
+                    agent.destination = scatter2;
                 else
+                {
                     agent.destination = chase.position;
-                agentPosition = agent.transform.position;
+                    agentPosition = agent.transform.position;
+                }
             }
             else if (agent != null && agent.enabled) //scatter
             {
@@ -216,7 +224,7 @@ namespace PacMan
             }
         }
 
-        internal void SoftReset()
+        public void SoftReset()
         {
             StartCoroutine(SoftResetActions());
         }

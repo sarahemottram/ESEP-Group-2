@@ -26,7 +26,6 @@ namespace PacMan
         public void Die(GameObject player)
         {
             var playerInput = player.GetComponent<PlayerInput>();
-            player.GetComponent<PelletController>().collisionCount = 0;
             playerInput.enabled = false;//remove player control
             var virtualCamera = GameObject.Find("Virtual Camera");
             virtualCamera.SetActive(false); //turns off virtual camera
@@ -56,6 +55,7 @@ namespace PacMan
         {
             playerReset.ResetPosition(); //resets player to beginning position
             virtualCamera.SetActive(true); //turns back on virtual camera
+            playerInput.GetComponentInParent<PelletController>().collisionCount = 0; //reset for wakas to function properly
             OnReset?.Invoke(); //plays beginning music
             yield return new WaitForSeconds(5f); //waits for intro tune
             playerInput.enabled = true; //gives player controll back

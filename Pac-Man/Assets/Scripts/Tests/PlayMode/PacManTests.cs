@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using System.Runtime.CompilerServices;
 
 [TestFixture]
 public class PacManTests
@@ -26,6 +27,7 @@ public class PacManTests
     private GameObject soundManager;
     private GameObject uiScore;
     private GameObject uiLives;
+
     [SetUp]
     public void Setup()
     {
@@ -57,23 +59,27 @@ public class PacManTests
         testObjectPowerPellet.AddComponent<MeshRenderer>();
         testObjectPowerPellet.tag = "Power Pellet";
 
-        testObjectInky = new GameObject("inky");
-        testObjectInky.AddComponent<GhostLogic>();
-        testObjectInky.AddComponent<GhostNavigation>();
-        testObjectInky.AddComponent<NavMeshAgent>();
-        testObjectInky.AddComponent<SphereCollider>();
-        testObjectInky.tag = "Inky";
-
         testObjectBlinky = new GameObject("blinky");
         testObjectBlinky.AddComponent<GhostLogic>();
         testObjectBlinky.AddComponent<GhostNavigation>();
+        testObjectBlinky.GetComponent<GhostNavigation>().chase = testObjectPlayer.transform;
         testObjectBlinky.AddComponent<NavMeshAgent>();
         testObjectBlinky.AddComponent<SphereCollider>();
         testObjectBlinky.tag = "Blinky";
 
+        testObjectInky = new GameObject("inky");
+        testObjectInky.AddComponent<GhostLogic>();
+        testObjectInky.AddComponent<GhostNavigation>();
+        testObjectInky.GetComponent<GhostNavigation>().chase = testObjectPlayer.transform;
+        testObjectInky.GetComponent<GhostNavigation>().chase2 = testObjectBlinky.transform;
+        testObjectInky.AddComponent<NavMeshAgent>();
+        testObjectInky.AddComponent<SphereCollider>();
+        testObjectInky.tag = "Inky";
+
         testObjectPinky = new GameObject("pinky");
         testObjectPinky.AddComponent<GhostLogic>();
         testObjectPinky.AddComponent<GhostNavigation>();
+        testObjectPinky.GetComponent<GhostNavigation>().chase = testObjectPlayer.transform;
         testObjectPinky.AddComponent<NavMeshAgent>();
         testObjectPinky.AddComponent<SphereCollider>();
         testObjectPinky.tag = "Pinky";
@@ -81,6 +87,7 @@ public class PacManTests
         testObjectClyde = new GameObject("clyde");
         testObjectClyde.AddComponent<GhostLogic>();
         testObjectClyde.AddComponent<GhostNavigation>();
+        testObjectClyde.GetComponent<GhostNavigation>().chase = testObjectPlayer.transform;
         testObjectClyde.AddComponent<NavMeshAgent>();
         testObjectClyde.AddComponent<SphereCollider>();
         testObjectClyde.tag = "Clyde";
@@ -467,5 +474,167 @@ public class PacManTests
 
         // Assert
         Assert.IsFalse(winSceneLoaded, "Win scene should not be loaded when score is not 244");
+    }
+
+    //Ghost Navigation Tests
+    [Test]
+    public void Blinky_GhostTimer_isFive()
+    {
+        //Arrange
+        var blinky = testObjectBlinky.GetComponent<GhostNavigation>();
+        float expected = 5f;
+
+        //Act
+        blinky.SetUp();
+
+        //Assert
+        Assert.AreEqual(expected, blinky.ghostTimer);
+    }
+    [Test]
+    public void Pinky_GhostTimer_isTen()
+    {
+        //Arrange
+        var pinky = testObjectPinky.GetComponent<GhostNavigation>();
+        float expected = 10f;
+
+        //Act
+        pinky.SetUp();
+
+        //Assert
+        Assert.AreEqual(expected, pinky.ghostTimer);
+    }
+    [Test]
+    public void Inky_GhostTimer_isFifteen()
+    {
+        //Arrange
+        var inky = testObjectInky.GetComponent<GhostNavigation>();
+        float expected = 15f;
+
+        //Act
+        inky.SetUp();
+
+        //Assert
+        Assert.AreEqual(expected, inky.ghostTimer);
+    }
+    [Test]
+    public void Clyde_GhostTimer_isTwenty()
+    {
+        //Arrange
+        var clyde = testObjectClyde.GetComponent<GhostNavigation>();
+        float expected = 20f;
+
+        //Act
+        clyde.SetUp();
+
+        //Assert
+        Assert.AreEqual(expected, clyde.ghostTimer);
+    }
+    [Test]
+    public void Blinky_Scatters_TopLeft()
+    {
+        //Arrange
+        var blinky = testObjectBlinky.GetComponent<GhostNavigation>();
+        Vector3 expected = new Vector3(-3.3f, .5f, 12.3f);
+
+        //Act
+        blinky.SetUp();
+
+        //Assert
+        Assert.AreEqual(expected, blinky.scatter1);
+    }
+    [Test]
+    public void Pinky_Scatters_BottomRight()
+    {
+        //Arrange
+        var pinky = testObjectPinky.GetComponent<GhostNavigation>();
+        Vector3 expected = new Vector3(4.8f, .5f, -10f);
+
+        //Act
+        pinky.SetUp();
+
+        //Assert
+        Assert.AreEqual(expected, pinky.scatter1);
+    }
+    [Test]
+    public void Inky_Scatters_TopRight()
+    {
+        //Arrange
+        var inky = testObjectInky.GetComponent<GhostNavigation>();
+        Vector3 expected = new Vector3(3.3f, .5f, 12.3f);
+
+        //Act
+        inky.SetUp();
+
+        //Assert
+        Assert.AreEqual(expected, inky.scatter1);
+    }
+    [Test]
+    public void Clyde_Scatters_BottomLeft()
+    {
+        //Arrange
+        var clyde = testObjectClyde.GetComponent<GhostNavigation>();
+        Vector3 expected = new Vector3(-4.8f, .5f, -10f);
+
+        //Act
+        clyde.SetUp();
+
+        //Assert
+        Assert.AreEqual(expected, clyde.scatter1);
+    }
+    [UnityTest]
+    public IEnumerator Blinky_GhostTimer_isResetOnSoftReset()
+    {
+        //Arrange
+        var blinky = testObjectBlinky.GetComponent<GhostNavigation>();
+        float expected = 5f;
+
+        //Act
+        blinky.SoftReset();
+        yield return new WaitForSeconds(3f);
+
+        //Assert
+        Assert.AreEqual(expected, blinky.ghostTimer);
+    }
+    [UnityTest]
+    public IEnumerator Pinky_GhostTimer_isResetOnSoftReset()
+    {
+        //Arrange
+        var pinky = testObjectPinky.GetComponent<GhostNavigation>();
+        float expected = 10f;
+
+        //Act
+        pinky.SoftReset();
+        yield return new WaitForSeconds(3f);
+
+        //Assert
+        Assert.AreEqual(expected, pinky.ghostTimer);
+    }
+    [UnityTest]
+    public IEnumerator Inky_GhostTimer_isResetOnSoftReset()
+    {
+        //Arrange
+        var inky = testObjectInky.GetComponent<GhostNavigation>();
+        float expected = 15f;
+
+        //Act
+        inky.SoftReset();
+        yield return new WaitForSeconds(3f);
+
+        //Assert
+        Assert.AreEqual(expected, inky.ghostTimer);
+    }
+    [UnityTest]
+    public IEnumerator Clyde_GhostTimer_isResetOnSoftReset()
+    {
+        //Arrange
+        var clyde = testObjectClyde.GetComponent<GhostNavigation>();
+        float expected = 20f;
+
+        //Act
+        clyde.SoftReset();
+        yield return new WaitForSeconds(3f);
+
+        //Assert
+        Assert.AreEqual(expected, clyde.ghostTimer);
     }
 }
