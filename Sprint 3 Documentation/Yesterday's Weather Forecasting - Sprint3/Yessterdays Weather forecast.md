@@ -1,55 +1,42 @@
-Yesterday's Weather Forecasting Pattern
+# Yesterday's Weather Forecasting Pattern
 
 We have used this tool to analyze the team's progress by generating
 yesterday\'s weather of Sprint 1 and Sprint 2 used the data to forecast
 Sprint 3 capacity.
 
-1.  **Calculation Explanation:\
-    **
+Calculation Explanation:
+-----------------------------------------------------------------------
+  **Theoretical capacity**: If all members of the team are available as planned (0 = not available, 1 = fully available).
+  
+  **Actual Capacity**: It's the sum of Actual Availability of each team member.
+  
+  **Team Capacity**: The percentage of Actual Capacity.
+  
+  **Assumed Normalized Velocity**: Normalized velocity is calculated as the number of points completed in a Sprint, divided by the percent team capacity in that Sprint.
+  
+  **Sprint Buffer**: The percentage of velocity to be reserved for unplanned stories that come up during the sprint.
+
+  **Targeted points**: The team\'s \"percent capacity\" for the upcoming Sprint is displayed and the number of points (excluding buffer) that the team should bring into the Sprint.
 
   -----------------------------------------------------------------------
-  **Theoretical capacity**            If all members of the team are
-                                      available as planned (0 = not
-                                      available, 1 = fully available)
-  ----------------------------------- -----------------------------------
-  **Actual Capacity**                 It's the sum of Actual Availability
-                                      of each team member
 
-  **Team Capacity**                   The percentage of Actual Capacity
+![](./image1.png)
 
-  **Assumed Normalized Velocity**     Normalized velocity is calculated
-                                      as the number of points completed
-                                      in a Sprint, divided by the percent
-                                      team capacity in that Sprint
+**Table.1. Showing the availability of team on the regular basis**
 
-  **Sprint Buffer**                   The percentage of velocity to be
-                                      reserved for unplanned stories that
-                                      come up during the sprint
 
-  **Targeted points**                 The team\'s \"percent capacity\"
-                                      for the upcoming Sprint is
-                                      displayed and the number of points
-                                      (excluding buffer) that the team
-                                      should bring into the Sprint.
-  -----------------------------------------------------------------------
-
-![](./image1.png){width="10.106512467191601in"
-height="2.107720909886264in"}
-
-**Table.1. Showing the availability of team on the regular basis\
 \
-**![A graph with text and numbers Description automatically
-generated](./image2.png){width="4.902845581802275in"
-height="2.432991032370954in"}**\
-**
+![A graph with text and numbers Description automatically
+generated](./image2.png)
 
 **Table.2. Showing the rationale for upcoming Sprint**
+
 
 **Targeted points is the Forecast of the number of Story Points
 deliverable in Sprint 3 based on Yesterday's Weather Forecast.**
 
-2.  **Steps for using this Tool:\
-    **
+
+**Steps for using this Tool:**
 
 -   Enter the names of each team member in \"Column B."
 
@@ -79,10 +66,4 @@ deliverable in Sprint 3 based on Yesterday's Weather Forecast.**
     that the team should bring into the Sprint is shown in Cell T7. **\
     \
     \
-    Tool Reference:** https://www.scruminc.com/**\
-    \
-    \
-    \
-    \
-    \
-    **
+    Tool Reference:** https://www.scruminc.com/
