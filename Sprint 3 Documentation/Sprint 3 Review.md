@@ -30,8 +30,8 @@
 ## What didn't go well?
 * Availability
 
-## Challenges Overcome  
-* maybe not do this
-
-## Lessons Learned and Reflections  
-* maybe not do this
+## Challenges Overcome Throughout Project
+* Learning how to implement GameCI
+* Learning how to use Unity
+* Learning how to use Azure DevOps as a management tool
+* Scheduling and Availability
